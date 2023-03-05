@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/navigation_news">
+
+    <fragment
+        android:id="@+id/navigation_bookmark"
+        android:name="com.agilbudiprasetyo.newsapp.ui.home.BookmarkFragment"
+        android:label="@string/menu_bookmark"
+        tools:layout="@layout/fragment_bookmark"/>
+    <fragment
+        android:id="@+id/navigation_news"
+        android:name="com.agilbudiprasetyo.newsapp.ui.home.NewsFragment"
+        android:label="@string/menu_news"
+        tools:layout="@layout/fragment_news"/>
+    <fragment
+        android:id="@+id/navigation_about"
+        android:name="com.agilbudiprasetyo.newsapp.ui.home.AboutFragment"
+        android:label="@string/menu_about"
+        tools:layout="@layout/fragment_about"/>
+
+</navigation>

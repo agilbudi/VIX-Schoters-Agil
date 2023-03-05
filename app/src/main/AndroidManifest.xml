@@ -3,17 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.agilbudiprasetyo.newsapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_app"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_app"
         android:supportsRtl="true"
         android:theme="@style/Theme.NewsApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.WebActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NewsApp.NoActionBar" />
+        <activity
+            android:name=".ui.DetailActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
