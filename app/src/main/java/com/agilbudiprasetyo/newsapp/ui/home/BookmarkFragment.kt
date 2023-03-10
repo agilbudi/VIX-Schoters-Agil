@@ -13,6 +13,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.agilbudiprasetyo.newsapp.adapter.BookmarkAdapter
 import com.agilbudiprasetyo.newsapp.adapter.NewsPagingAdapter
+import com.agilbudiprasetyo.newsapp.data.local.entity.BookmarkEntity
 import com.agilbudiprasetyo.newsapp.data.local.entity.NewsEntity
 import com.agilbudiprasetyo.newsapp.databinding.FragmentBookmarkBinding
 import com.agilbudiprasetyo.newsapp.ui.DetailActivity
@@ -38,10 +39,19 @@ class BookmarkFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewFactory = MainViewModelFactory.getInstance(view.context)
         bookmarkAdapter = BookmarkAdapter{ news ->
+            val data = NewsEntity(
+                title = news.title,
+                author = news.author,
+                description = news.description,
+                url = news.url,
+                urlToImage = news.urlToImage,
+                publishedAt = news.publishedAt,
+                isBookmarked = news.isBookmarked
+            )
             if (news.isBookmarked){
-                viewModel.deleteNews(news)
+                viewModel.deleteNews(data)
             }else{
-                viewModel.saveNews(news)
+                viewModel.saveNews(data)
             }
         }
 
@@ -52,13 +62,13 @@ class BookmarkFragment : Fragment() {
 
         updateBookmarkNews()
         bookmarkAdapter.setOnItemClickCallback(object : BookmarkAdapter.OnItemClickCallback{
-            override fun onItemClicked(data: NewsEntity) {
+            override fun onItemClicked(data: BookmarkEntity) {
                 selectedItem(view.context, data)
             }
         })
     }
 
-    private fun selectedItem(context: Context, data: NewsEntity) {
+    private fun selectedItem(context: Context, data: BookmarkEntity) {
         val intent = Intent(context, DetailActivity::class.java)
         intent.putExtra(DetailActivity.EXTRA_NEWS, data)
         startActivity(intent)

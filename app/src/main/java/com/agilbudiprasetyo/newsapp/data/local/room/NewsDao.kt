@@ -21,7 +21,4 @@ interface NewsDao {
 
     @Query("DELETE FROM news")
     fun deleteAll()
-
-    @Query("SELECT * FROM news WHERE isBookmarked = 1")
-    fun bookmarked(): LiveData<List<NewsEntity>>
 }

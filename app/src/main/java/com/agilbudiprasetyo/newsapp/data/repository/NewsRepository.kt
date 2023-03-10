@@ -60,7 +60,7 @@ class NewsRepository private constructor(
         }
     }
 
-    fun getBookmark(): LiveData<List<NewsEntity>> = database.newsDao().bookmarked()
+    fun getBookmark(): LiveData<List<BookmarkEntity>> = database.bookmarkDao().bookmarked()
 
     companion object{
         @Volatile

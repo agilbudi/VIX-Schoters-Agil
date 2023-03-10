@@ -8,17 +8,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.agilbudiprasetyo.newsapp.R
+import com.agilbudiprasetyo.newsapp.data.local.entity.BookmarkEntity
 import com.agilbudiprasetyo.newsapp.data.local.entity.NewsEntity
 import com.agilbudiprasetyo.newsapp.databinding.ItemNewsLayoutBinding
 import com.agilbudiprasetyo.newsapp.utils.DateFormatter
 import com.agilbudiprasetyo.newsapp.utils.withDateFormat
 import com.bumptech.glide.Glide
 
-class BookmarkAdapter(private val onBookmarkClicked: (NewsEntity) -> Unit): ListAdapter<NewsEntity, BookmarkAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class BookmarkAdapter(private val onBookmarkClicked: (BookmarkEntity) -> Unit): ListAdapter<BookmarkEntity, BookmarkAdapter.MyViewHolder>(DIFF_CALLBACK) {
     private var onItemClickCallback: OnItemClickCallback? = null
 
     inner class MyViewHolder(val binding: ItemNewsLayoutBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(data: NewsEntity) {
+        fun bind(data: BookmarkEntity) {
             val image: Any? = if (data.urlToImage.isNullOrEmpty()) {
                 ContextCompat.getDrawable(itemView.context, R.mipmap.ic_no_image)
             } else {
@@ -73,16 +74,16 @@ class BookmarkAdapter(private val onBookmarkClicked: (NewsEntity) -> Unit): List
     }
 
     interface OnItemClickCallback{
-        fun onItemClicked(data:NewsEntity)
+        fun onItemClicked(data:BookmarkEntity)
     }
 
     companion object{
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<NewsEntity>(){
-            override fun areItemsTheSame(oldItem: NewsEntity, newItem: NewsEntity): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<BookmarkEntity>(){
+            override fun areItemsTheSame(oldItem: BookmarkEntity, newItem: BookmarkEntity): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: NewsEntity, newItem: NewsEntity): Boolean {
+            override fun areContentsTheSame(oldItem: BookmarkEntity, newItem: BookmarkEntity): Boolean {
                 return oldItem.title == newItem.title
             }
 
