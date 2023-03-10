@@ -4,13 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.paging.*
-import androidx.room.withTransaction
 import com.agilbudiprasetyo.newsapp.data.NewsRemoteMediator
 import com.agilbudiprasetyo.newsapp.data.local.entity.BookmarkEntity
 import com.agilbudiprasetyo.newsapp.data.local.entity.NewsEntity
 import com.agilbudiprasetyo.newsapp.data.local.room.NewsDatabase
 import com.agilbudiprasetyo.newsapp.data.remote.retrofit.ApiService
-import com.agilbudiprasetyo.newsapp.model.News
 import com.agilbudiprasetyo.newsapp.utils.AppExecutors
 import com.agilbudiprasetyo.newsapp.utils.Result
 
@@ -40,36 +38,21 @@ class NewsRepository private constructor(
         return result
     }
 
-//    suspend fun getTopHeadlines(size: Int){
-//        dataTopHeadlines.value = Result.Loading
-//        try {
-//            apiService.topHeadlines(size).enqueue(object : Callback<LiveData<Articles>>{
-//                override fun onResponse(call: Call<LiveData<Articles>>, response: Response<LiveData<Articles>>) {
-//                    val responseData = response.body()
-//                    if (response.isSuccessful) {
-//                        if (responseData != null) {
-//                            dataTopHeadlines.addSource(responseData) { newData ->
-//                                dataTopHeadlines.value = Result.Success(newData.articles)
-//                            }
-//                        }
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<LiveData<Articles>>, t: Throwable) {
-//
-//                }
-//            })
-//
-//        }catch (t: Throwable){
-//            dataTopHeadlines.value = Result.Error(t.message.toString())
-//        }
-//    }
-
     fun setBookmark(news: NewsEntity, bookmarkState: Boolean){
         appExecutors.diskIO.execute {
             news.isBookmarked = bookmarkState
             if (bookmarkState){
-                database.bookmarkDao().insertBookmark(BookmarkEntity(news.title))
+                database.bookmarkDao().insertBookmark(
+                    BookmarkEntity(
+                        title = news.title,
+                        author = news.author,
+                        description = news.description,
+                        url = news.url,
+                        urlToImage = news.urlToImage,
+                        publishedAt = news.publishedAt,
+                        isBookmarked = bookmarkState
+                    )
+                )
             }else{
                 database.bookmarkDao().deleteBookmark(news.title)
             }

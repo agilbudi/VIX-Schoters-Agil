@@ -1,5 +1,6 @@
 package com.agilbudiprasetyo.newsapp.ui.home
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,19 +18,21 @@ class AboutFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
-        return binding?.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val name = resources.getString(R.string.name)
+        val usernameGithub = "Github: "+ resources.getString(R.string.username_github)
             Glide.with(view.context)
                 .load(ContextCompat.getDrawable(view.context, R.mipmap.ic_photo))
                 .apply(RequestOptions().centerCrop())
                 .into(binding.ivAboutImage)
-            binding.tvAboutName.text = "Agil Budi Prasetyo"
-            binding.tvAboutGithub.text = "agilbudi"
+            binding.tvAboutName.text = name
+            binding.tvAboutGithub.text = usernameGithub
     }
 
 }

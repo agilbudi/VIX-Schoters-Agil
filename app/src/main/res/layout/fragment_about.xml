@@ -17,7 +17,6 @@
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:transitionName="name"
             app:expandedTitleTextColor="?colorSecondary"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
@@ -27,12 +26,6 @@
                 android:layout_height="match_parent"
                 tools:src="@mipmap/ic_photo"
                 tools:scaleType="centerCrop"/>
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"/>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -70,6 +63,7 @@
                         android:id="@+id/tv_about_github"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
                         android:background="@android:color/white"

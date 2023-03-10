@@ -3,7 +3,6 @@ package com.agilbudiprasetyo.newsapp.data.local.room
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingSource
 import androidx.room.*
-import com.agilbudiprasetyo.newsapp.data.local.entity.BookmarkEntity
 import com.agilbudiprasetyo.newsapp.data.local.entity.NewsEntity
 
 @Dao
