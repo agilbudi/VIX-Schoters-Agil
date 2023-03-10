@@ -9,10 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.agilbudiprasetyo.newsapp.R
 import com.agilbudiprasetyo.newsapp.data.local.entity.BookmarkEntity
-import com.agilbudiprasetyo.newsapp.data.local.entity.NewsEntity
 import com.agilbudiprasetyo.newsapp.databinding.ItemNewsLayoutBinding
 import com.agilbudiprasetyo.newsapp.utils.DateFormatter
-import com.agilbudiprasetyo.newsapp.utils.withDateFormat
 import com.bumptech.glide.Glide
 
 class BookmarkAdapter(private val onBookmarkClicked: (BookmarkEntity) -> Unit): ListAdapter<BookmarkEntity, BookmarkAdapter.MyViewHolder>(DIFF_CALLBACK) {
